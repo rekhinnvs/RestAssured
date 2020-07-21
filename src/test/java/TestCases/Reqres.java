@@ -1,3 +1,5 @@
+package TestCases;
+
 import io.restassured.path.json.JsonPath;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -45,7 +47,6 @@ public class Reqres {
         //JsonPath js = new JsonPath(response);
         //System.out.println(js.getString("data.id"));
 
-        System.out.println("************");
         //Update the user using PUT
         given()
                 .header("Content-Type","application/json")
@@ -59,9 +60,8 @@ public class Reqres {
 
         //Get the value after updating.
         given()
-                .header("Content-Type","application/json")
                 .when().get(baseUrl+"api/users")
-                .then().log().body().extract().response().asString();
+                .then().log().body();
 
     }
 }
