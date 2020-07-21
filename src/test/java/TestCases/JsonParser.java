@@ -1,6 +1,7 @@
 package TestCases;
 
 import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.JsonData;
@@ -62,8 +63,22 @@ public class JsonParser {
                 System.out.print("Number of copies of RPA : "+js.getString("courses["+i+"].copies"));
                 break;
             }
-
         }
+    }
+
+    //Verify if Sum of all Course prices matches with Purchase Amount
+    @Test(priority = 6)
+    public void getTheSumOfCourses() {
+        int numberOfCourses = js.getInt("courses.size()");
+        int totalPurchaseAmount = js.getInt("dashboard.purchaseAmount");
+        int coursePurchaseAmount = 0;
+        for(int i=0; i<numberOfCourses; i++) {
+            int numberOfCopies = js.getInt("courses["+i+"].copies");
+            int pricePerCopy = js.getInt("courses["+i+"].price");
+            coursePurchaseAmount += numberOfCopies*pricePerCopy;
+        }
+        System.out.println("Total amount from purchased books : "+coursePurchaseAmount);
+        Assert.assertEquals(coursePurchaseAmount,totalPurchaseAmount);
     }
 
 }
