@@ -1,6 +1,6 @@
 package utils;
 
-public class JsonData {
+public class Payload {
 
     public static String getJson() {
         return  "{\n" +
@@ -30,6 +30,15 @@ public class JsonData {
                 "      \"copies\": 7\n" +
                 "    }\n" +
                 "  ]\n" +
+                "}";
+    }
+
+    public static String addBook(String isbn, String aisle, String author) {
+        return "{\n" +
+                "  \"name\": \"Learn Appium Automation with Java\",\n" +
+                "  \"isbn\": \""+isbn+"\",\n" +
+                "  \"aisle\": \""+aisle+"\",\n" +
+                "  \"author\": \""+author+"\"\n" +
                 "}";
     }
 }

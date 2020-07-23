@@ -4,7 +4,7 @@ import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import utils.JsonData;
+import utils.Payload;
 
 public class JsonParser {
 
@@ -19,7 +19,7 @@ public class JsonParser {
 
     @BeforeClass
     public void setup() {
-        js = new JsonPath(JsonData.getJson());
+        js = new JsonPath(Payload.getJson());
     }
 
     //Get the number of courses
