@@ -71,7 +71,7 @@ public class Jira {
 
     @Test(enabled = true,priority = 2)
     public void getIssueFields() {
-        issueID = "CLAS-4";
+        issueID = "CLAS-4"; //Jira issue id
         endpoint = "rest/api/2/issue/"+issueID;
         //Add the authentication globally so that we can avoid authenticating every time.
         RestAssured.authentication = RestAssured.preemptive().basic("dracksagain@gmail.com","0BnHftVpB11ca6xMik0D5FA4");
