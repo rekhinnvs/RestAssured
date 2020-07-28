@@ -15,7 +15,6 @@ public class GoogleMaps {
     @BeforeClass
     public void setup() {
         RestAssured.baseURI ="https://rahulshettyacademy.com/";
-
     }
 
     @Test
@@ -41,6 +40,7 @@ public class GoogleMaps {
         addPlace.setTypes(typesList);
 
         given().queryParam("key","qaclick123")
+                .header("Content-Type","application/json")
                 .body(addPlace)
                 .post(endpoint)
                 .then().extract().response().prettyPrint();
