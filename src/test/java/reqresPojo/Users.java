@@ -8,7 +8,7 @@ public class Users {
     private String total;
     private String total_pages;
     private List<Data> data;
-    private List<Users> users;
+    private Ad ad;
 
     public String getPage() {
         return page;
@@ -50,11 +50,11 @@ public class Users {
         this.data = data;
     }
 
-    public List<Users> getUsers() {
-        return users;
+    public Ad getAd() {
+        return ad;
     }
 
-    public void setUsers(List<Users> users) {
-        this.users = users;
+    public void setAd(Ad ad) {
+        this.ad = ad;
     }
 }
