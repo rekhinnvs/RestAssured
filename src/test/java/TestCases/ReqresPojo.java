@@ -2,6 +2,7 @@ package TestCases;
 
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.parsing.Parser;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -23,7 +24,7 @@ public class ReqresPojo {
     public void getUsers() {
         String endpoint = "api/users";
         //add the default parser to parse the output json file.
-        //Get the response as a users object.
+        //Get the response as a users class object.
         Users users = given().expect().defaultParser(Parser.JSON)
                 .when()
                 .get(endpoint)
@@ -44,4 +45,5 @@ public class ReqresPojo {
         System.out.println(users.getAd().getUrl());
 
     }
+
 }
