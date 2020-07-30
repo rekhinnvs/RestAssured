@@ -70,14 +70,12 @@ public class GoogleMaps {
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON)
                 .build();
-
+        //Add new address to the maps.
         given().spec(requestSpec)
                 .body(addPlace)
                 .when()
                 .post(endpoint)
                 .then()
                 .spec(responseSpec).log().body();
-
-
     }
 }
