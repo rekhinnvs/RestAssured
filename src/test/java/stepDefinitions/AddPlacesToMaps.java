@@ -7,22 +7,26 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
-import org.testng.Assert;
-import testData.MapsData;
 
-import java.util.ArrayList;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import testData.MapsData;
+import utils.Base;
+
+import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 
-
-public class AddPlacesToMaps {
+public class AddPlacesToMaps extends Base {
 
     Response response;
     JsonPath js;
+
+
     @Given("Add place payload")
-    public void add_place_payload() {
-        RestAssured.baseURI ="https://rahulshettyacademy.com/";
+    public void add_place_payload() throws IOException {
+        //Get the base url from the global.properties file
+        RestAssured.baseURI = getBaseURL("rahulShetty");
 
     }
 
