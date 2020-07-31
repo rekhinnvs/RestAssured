@@ -4,13 +4,15 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.messages.internal.com.google.protobuf.Api;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import mapsPojo.MapAddPlace;
 import testData.MapsData;
+import utils.ApiResources;
 import utils.Base;
 
 import java.io.IOException;
@@ -21,23 +23,29 @@ public class AddPlacesToMaps extends Base {
 
     Response response;
     JsonPath js;
+    MapsData mapsData;
+    MapAddPlace addPlace;
 
-
-    @Given("Add place payload")
-    public void add_place_payload() throws IOException {
-        //Get the base url from the global.properties file
+    @Given("Add place with {string} {string} and {string}")
+    public void add_place_with_and(String accuracy, String name, String address) throws IOException {
+        System.out.println("accuracy " +accuracy);
         RestAssured.baseURI = getBaseURL("rahulShetty");
+        mapsData = new MapsData();
+        addPlace = mapsData.addAddress(accuracy,name,address);
 
     }
 
     @When("I call add place API with {string} http request")
     public void i_call_add_place_api_with_http_request(String httpRequest) {
-        String endpoint = "maps/api/place/add/json";
+        //Get the endpoint from the enum class.
+        ApiResources apiResources = ApiResources.valueOf("ADDPLACE");
+        String endpoint = apiResources.getResource();
+        //String endpoint = "maps/api/place/add/json";
         //Get the address data from Mapsdata class
         MapsData mapsData = new MapsData();
         response = given().queryParam("key","qaclick123")
                 .header("Content-Type","application/json")
-                .body(mapsData.addAddress())
+                .body(addPlace)
                 .post(endpoint);
     }
 

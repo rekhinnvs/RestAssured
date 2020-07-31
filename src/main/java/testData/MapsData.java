@@ -9,7 +9,7 @@ public class MapsData {
 
     MapAddPlace addPlace;
     Location location;
-    public MapAddPlace addAddress() {
+    public MapAddPlace addAddress(String accuracy, String name, String address) {
         addPlace = new MapAddPlace();
         location = new Location();
 
@@ -18,10 +18,10 @@ public class MapsData {
         location.setLng("33.427349");
 
         addPlace.setLocation(location);
-        addPlace.setAccuracy(45);
-        addPlace.setName("BackLine house");
+        addPlace.setAccuracy(Integer.parseInt(accuracy));
+        addPlace.setName(name);
         addPlace.setPhone_number("(+91) 880 261 3937");
-        addPlace.setAddress("30, side layout, cohen 24");
+        addPlace.setAddress(address);
 
         ArrayList<String> typesList = new ArrayList<String>();
         typesList.add("type 1");
